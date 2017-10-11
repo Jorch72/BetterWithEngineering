@@ -1,0 +1,15 @@
+[
+{
+  "modid": "betterwithengineering",
+  "name": "Better With Engineering",
+  "description": "Add Better With Mods compat to Immersive Engineering and other tech mods",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["primetoxinz"],
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": [ "betterwithmods", "immersiveengineering"]
+}
+]
