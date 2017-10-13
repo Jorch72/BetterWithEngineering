@@ -2,7 +2,6 @@ package betterwithengineering;
 
 import betterwithengineering.base.CompatLoader;
 import net.minecraftforge.common.config.Config;
-import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -12,14 +11,14 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = BWE.MODID, name = BWE.NAME, version = BWE.VERSION, dependencies = BWE.DEPS)
+@Mod(modid = BWE.MODID, name = BWE.NAME, version = BWE.VERSION, dependencies = BWE.DEPS, acceptedMinecraftVersions = "1.12,1.12.1,1.12.2")
 @Mod.EventBusSubscriber(modid = BWE.MODID)
 public class BWE {
 	public static final String MODID = "betterwithengineering";
 	public static final String NAME = "Better With Engineering";
 	public static final String DEPS = "required-after:thermalexpansion;required-after:immersiveengineering;required-after:betterwithmods";
 
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.1";
 	public static Logger logger;
 
 	@EventHandler
