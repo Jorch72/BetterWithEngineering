@@ -16,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 public class BWE {
 	public static final String MODID = "betterwithengineering";
 	public static final String NAME = "Better With Engineering";
-	public static final String DEPS = "after:thermalexpansion;fter:immersiveengineering;required-after:betterwithmods";
+	public static final String DEPS = "after:thermalexpansion;after:immersiveengineering;required-after:betterwithmods";
 
 	public static final String VERSION = "1.2";
 	public static Logger logger;
