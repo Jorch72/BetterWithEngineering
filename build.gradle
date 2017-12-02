@@ -27,6 +27,10 @@ minecraft {
 }
 
 repositories {
+    maven { url "http://maven.amadornes.com/" }
+    maven { url "http://www.ryanliptak.com/maven/" }
+    maven { url "http://maven.tterrag.com" }
+
     maven { url 'http://dvs1.progwml6.com/files/maven' }
     maven { url "http://blamejared.com/maven" }
     maven {
@@ -40,6 +44,7 @@ repositories {
 }
 
 dependencies {
+    deobfCompile "team.chisel.ctm:CTM:MC1.12-0.2.3.9"
     deobfCompile "betterwithmods:BetterWithMods:+"
     deobfCompile "blusunrize:ImmersiveEngineering:+"
     deobfCompile "cofh:ThermalExpansion:1.12-5.3.5.19:deobf"

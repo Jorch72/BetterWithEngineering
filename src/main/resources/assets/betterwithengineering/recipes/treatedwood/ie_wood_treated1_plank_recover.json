@@ -1,0 +1,23 @@
+{
+  "conditions": [
+    {
+      "type": "betterwithengineering:config"
+    }
+  ],
+  "result": {
+    "item": "immersiveengineering:treated_wood",
+    "data": 1
+  },
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "betterwithengineering:ie_siding",
+      "data": 1
+    },
+    {
+      "item": "betterwithengineering:ie_siding",
+      "data": 1
+    }
+  ]
+}
+

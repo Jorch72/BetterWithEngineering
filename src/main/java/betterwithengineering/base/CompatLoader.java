@@ -4,6 +4,7 @@ import betterwithengineering.BWE;
 import betterwithengineering.ThermalExpansion;
 import betterwithengineering.ie.HempFix;
 import betterwithengineering.ie.MechPower;
+import betterwithengineering.ie.TreatedWood;
 import betterwithmods.module.Feature;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
@@ -24,6 +25,10 @@ public class CompatLoader {
             COMPAT_CLASS.put("immersiveengineering", MechPower.class);
         if(BWE.ConfigManager.overrideIndustrialHempDrops)
             COMPAT_CLASS.put("immersiveengineering", HempFix.class);
+        if(BWE.ConfigManager.addTreatedWood) {
+            COMPAT_CLASS.put("immersiveengineering", TreatedWood.class);
+        }
+
         COMPAT_CLASS.put("thermalexpansion", ThermalExpansion.class);
         for (String key : COMPAT_CLASS.keySet()) {
             if (Loader.isModLoaded(key)) {

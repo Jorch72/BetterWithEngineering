@@ -1,0 +1,23 @@
+{
+  "conditions": [
+    {
+      "type": "betterwithengineering:config"
+    }
+  ],
+  "result": {
+    "item": "betterwithengineering:ie_moulding",
+    "data": 0
+  },
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "betterwithengineering:ie_corner",
+      "data": 0
+    },
+    {
+      "item": "betterwithengineering:ie_corner",
+      "data": 0
+    }
+  ]
+}
+

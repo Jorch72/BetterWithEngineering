@@ -55,6 +55,9 @@ public class BWE {
 		@Config.Comment("Allow IE Windmill and Waterwheel to output to wooden axles")
 		public static boolean mechanicalPower = true;
 
+        @Config.Comment("Add Treated Wood IE Siding, Moulding and Corners")
+        public static boolean addTreatedWood= true;
+
 		@Config.Name("thermalexpansion")
 		public static ThermalExpansion thermalExpansion = new ThermalExpansion();
 
