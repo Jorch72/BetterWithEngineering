@@ -1,0 +1,25 @@
+{
+  "conditions": [
+    {
+      "type": "betterwithengineering:config"
+    }
+  ],
+  "result": {
+    "item": "immersiveengineering:wooden_device1",
+    "data": 4,
+    "count": 4
+  },
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "ss ",
+    "sm "
+  ],
+  "key": {
+    "s": {
+      "item": "#sidingTreatedWood"
+    },
+    "m": {
+      "item": "#mouldingTreatedWood"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "conditions": [
+    {
+      "type": "betterwithengineering:config"
+    }
+  ],
+  "result": {
+    "item": "immersiveengineering:wooden_decoration",
+    "data": 0,
+    "count": 2
+  },
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "mmm"
+  ],
+  "key": {
+    "m": {
+      "item": "#mouldingTreatedWood"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "mouldingTreatedWood",
+    "ingredient": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "mouldingTreatedWood"
+      }
+    ]
+  },
+  {
+    "name": "sidingTreatedWood",
+    "ingredient": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "sidingTreatedWood"
+      }
+    ]
+  }
+]
