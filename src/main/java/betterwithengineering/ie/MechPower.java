@@ -2,10 +2,17 @@ package betterwithengineering.ie;
 
 import betterwithengineering.BWE;
 import betterwithmods.api.capabilities.CapabilityMechanicalPower;
+import betterwithmods.api.tile.IAxle;
+import betterwithmods.api.tile.IAxleTick;
 import betterwithmods.api.tile.IMechanicalPower;
+import betterwithmods.common.blocks.mechanical.BlockAxle;
+import betterwithmods.common.blocks.mechanical.tile.TileAxle;
 import betterwithmods.module.Feature;
+import betterwithmods.util.MechanicalUtil;
+import blusunrize.immersiveengineering.api.energy.IRotationAcceptor;
 import blusunrize.immersiveengineering.common.blocks.wooden.TileEntityWatermill;
 import blusunrize.immersiveengineering.common.blocks.wooden.TileEntityWindmill;
+import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -25,6 +32,7 @@ public class MechPower extends Feature {
 
     public MechPower() {
         configName = "IE Mechanical Power";
+        TileAxle.tickHandlers.add(new AxleRF());
     }
 
     @SubscribeEvent
@@ -164,4 +172,19 @@ public class MechPower extends Feature {
         }
     }
 
+
+    public class AxleRF implements IAxleTick {
+        @Override
+        public void tick(World world, BlockPos pos, IAxle axle) {
+            for (EnumFacing facing : axle.getDirections()) {
+                TileEntity acc = Utils.getExistingTileEntity(world, pos.offset(facing.getOpposite()));
+                if (acc instanceof IRotationAcceptor) {
+                    if (!world.isRemote) {
+                        IRotationAcceptor dynamo = (IRotationAcceptor) acc;
+                        dynamo.inputRotation(axle.getMechanicalOutput(facing) * BWE.ConfigManager.mechPower.rfScale, facing.getOpposite());
+                    }
+                }
+            }
+        }
+    }
 }

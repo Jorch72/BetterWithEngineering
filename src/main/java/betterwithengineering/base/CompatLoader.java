@@ -4,6 +4,7 @@ import betterwithengineering.BWE;
 import betterwithengineering.ThermalExpansion;
 import betterwithengineering.ie.HempFix;
 import betterwithengineering.ie.MechPower;
+import betterwithengineering.ie.SteelRebalance;
 import betterwithmods.module.Feature;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
@@ -20,10 +21,12 @@ public class CompatLoader {
     public static List<Feature> features = Lists.newArrayList();
 
     public static void construct() {
-        if(BWE.ConfigManager.mechanicalPower)
+        if(BWE.ConfigManager.mechPower.enabled)
             COMPAT_CLASS.put("immersiveengineering", MechPower.class);
         if(BWE.ConfigManager.overrideIndustrialHempDrops)
             COMPAT_CLASS.put("immersiveengineering", HempFix.class);
+//        if(BWE.ConfigManager.steelRebalance)
+//            COMPAT_CLASS.put("immersiveengineering", SteelRebalance.class);
         COMPAT_CLASS.put("thermalexpansion", ThermalExpansion.class);
         for (String key : COMPAT_CLASS.keySet()) {
             if (Loader.isModLoaded(key)) {
