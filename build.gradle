@@ -7,32 +7,57 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+
+apply plugin: "maven"
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
 version = "1.2"
 group = "betterwithengineering"
-archivesBaseName = "betterwithengineering"
+archivesBaseName = "BetterWithEngineering"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
 
+if (System.getenv().BUILD_NUMBER != null) {//adds the build number to the end of the version string if on a build server
+    version += "-${System.getenv().BUILD_NUMBER}"
+}
+
 minecraft {
-    version = "1.12.2-14.23.0.2493"
+    version = "1.12.2-14.23.1.2554"
     runDir = "run"
-    mappings = "snapshot_20170624"
+    mappings = "snapshot_20171125"
 }
 
 repositories {
-    maven { url "http://maven.amadornes.com/" }
-    maven { url "http://www.ryanliptak.com/maven/" }
-    maven { url "http://maven.tterrag.com" }
+    //All for Ex Nihilio
+
+    // Required for TheOneProbe
+    maven {
+        name "tterrag"
+        url "http://maven.tterrag.com"
+    }
+
+    // Required for RedstoneFlux which is required for TheOneProbe
+    maven {
+        name = "CoFH Maven"
+        url = "http://maven.covers1624.net"
+    }
+
+    // Required for HWYLA
+    maven {
+        name "tehnut"
+        url "http://tehnut.info/maven"
+    }
+    //Ex Nihilo
 
     maven { url 'http://dvs1.progwml6.com/files/maven' }
-    maven { url "http://blamejared.com/maven" }
+
+    maven { url "http://maven.blamejared.com" }
+
     maven {
         name = "ChickenBones Maven"
         url = "http://chickenbones.net/maven/"
@@ -41,13 +66,70 @@ repositories {
         name = "Covers Maven"
         url = "http://maven.covers1624.net"
     }
+
+    mavenCentral()
 }
 
 dependencies {
     deobfCompile "team.chisel.ctm:CTM:MC1.12-0.2.3.9"
     deobfCompile "betterwithmods:BetterWithMods:+"
     deobfCompile "blusunrize:ImmersiveEngineering:+"
-    deobfCompile "cofh:ThermalExpansion:1.12-5.3.5.19:deobf"
+    deobfCompile "mezz.jei:jei_1.12.2:4.8.3.128"
+    deobfCompile "exnihilocreatio:exnihilocreatio:+"
+    deobfCompile "cofh:ThermalExpansion:+:deobf"
+}
+
+configurations {
+    deployerJars
+}
+
+dependencies {
+    deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
+}
+
+
+configurations {
+    deployerJars
+}
+
+dependencies {
+    deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://" + System.getenv("local_maven"))
+            pom {
+                groupId = project.group
+                version
+                artifactId = project.archivesBaseName
+                project {
+                    name project.archivesBaseName
+                    packaging 'jar'
+                    description 'BetterWithEngineering'
+                    url 'https://github.com/BetterWithMods/BetterWithEngineering'
+                    scm {
+                        url 'https://github.com/BetterWithMods/BetterWithEngineering.git'
+                        connection 'scm:git:git@github.com:BetterWithMods/BetterWithEngineering.git'
+                        developerConnection 'scm:git:git@github.com:BetterWithMods/BetterWithEngineering.git'
+                    }
+                    issueManagement {
+                        system 'github'
+                        url 'https://github.com/BetterWithMods/BetterWithEngineering/issues'
+                    }
+                    developers {
+                        developer {
+                            id 'primetoxinz'
+                            name 'primetoxinz'
+                            roles { role 'developer' }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 processResources {

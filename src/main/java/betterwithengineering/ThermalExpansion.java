@@ -1,14 +1,11 @@
 package betterwithengineering;
 
 
-import betterwithmods.common.BWOreDictionary;
 import betterwithmods.common.items.ItemMaterial;
 import betterwithmods.module.Feature;
 import cofh.thermalexpansion.util.managers.machine.SmelterManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
