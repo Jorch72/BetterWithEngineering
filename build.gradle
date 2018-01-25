@@ -7,17 +7,23 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+
+apply plugin: "maven"
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
 version = "1.2"
 group = "betterwithengineering"
-archivesBaseName = "betterwithengineering"
+archivesBaseName = "BetterWithEngineering"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
+}
+
+if (System.getenv().BUILD_NUMBER != null) {//adds the build number to the end of the version string if on a build server
+    version += "-${System.getenv().BUILD_NUMBER}"
 }
 
 minecraft {
@@ -60,6 +66,8 @@ repositories {
         name = "Covers Maven"
         url = "http://maven.covers1624.net"
     }
+
+    mavenCentral()
 }
 
 dependencies {
@@ -68,6 +76,59 @@ dependencies {
     deobfCompile "mezz.jei:jei_1.12.2:4.8.3.128"
     deobfCompile "exnihilocreatio:exnihilocreatio:+"
     deobfCompile "cofh:ThermalExpansion:+:deobf"
+}
+
+configurations {
+    deployerJars
+}
+
+dependencies {
+    deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
+}
+
+
+configurations {
+    deployerJars
+}
+
+dependencies {
+    deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://" + System.getenv("local_maven"))
+            pom {
+                groupId = project.group
+                version
+                artifactId = project.archivesBaseName
+                project {
+                    name project.archivesBaseName
+                    packaging 'jar'
+                    description 'BetterWithEngineering'
+                    url 'https://github.com/BetterWithMods/BetterWithEngineering'
+                    scm {
+                        url 'https://github.com/BetterWithMods/BetterWithEngineering.git'
+                        connection 'scm:git:git@github.com:BetterWithMods/BetterWithEngineering.git'
+                        developerConnection 'scm:git:git@github.com:BetterWithMods/BetterWithEngineering.git'
+                    }
+                    issueManagement {
+                        system 'github'
+                        url 'https://github.com/BetterWithMods/BetterWithEngineering/issues'
+                    }
+                    developers {
+                        developer {
+                            id 'primetoxinz'
+                            name 'primetoxinz'
+                            roles { role 'developer' }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 processResources {
