@@ -2,6 +2,7 @@ package betterwithengineering.base;
 
 import betterwithengineering.BWE;
 import betterwithengineering.ThermalExpansion;
+import betterwithengineering.enc.ExNihilo;
 import betterwithengineering.ie.HempFix;
 import betterwithengineering.ie.MechPower;
 import betterwithengineering.ie.SteelRebalance;
@@ -21,13 +22,16 @@ public class CompatLoader {
     public static List<Feature> features = Lists.newArrayList();
 
     public static void construct() {
-        if(BWE.ConfigManager.mechPower.enabled)
+        if(BWE.ConfigManager.immersiveEngineering.mechPower.enabled)
             COMPAT_CLASS.put("immersiveengineering", MechPower.class);
-        if(BWE.ConfigManager.overrideIndustrialHempDrops)
+        if(BWE.ConfigManager.immersiveEngineering.overrideIndustrialHempDrops)
             COMPAT_CLASS.put("immersiveengineering", HempFix.class);
-//        if(BWE.ConfigManager.steelRebalance)
-//            COMPAT_CLASS.put("immersiveengineering", SteelRebalance.class);
-        COMPAT_CLASS.put("thermalexpansion", ThermalExpansion.class);
+        if(BWE.ConfigManager.immersiveEngineering.steel.enabled)
+            COMPAT_CLASS.put("immersiveengineering", SteelRebalance.class);
+        if(BWE.ConfigManager.thermalExpansion.hardcoreInductionSmelter)
+            COMPAT_CLASS.put("thermalexpansion", ThermalExpansion.class);
+        if(BWE.ConfigManager.exNihilo.supportMechPower)
+            COMPAT_CLASS.put("exnihilocreatio", ExNihilo.MechPower.class);
         for (String key : COMPAT_CLASS.keySet()) {
             if (Loader.isModLoaded(key)) {
                 for (Class<? extends Feature> c : COMPAT_CLASS.get(key)) {

@@ -27,8 +27,31 @@ minecraft {
 }
 
 repositories {
+    //All for Ex Nihilio
+
+    // Required for TheOneProbe
+    maven {
+        name "tterrag"
+        url "http://maven.tterrag.com"
+    }
+
+    // Required for RedstoneFlux which is required for TheOneProbe
+    maven {
+        name = "CoFH Maven"
+        url = "http://maven.covers1624.net"
+    }
+
+    // Required for HWYLA
+    maven {
+        name "tehnut"
+        url "http://tehnut.info/maven"
+    }
+    //Ex Nihilo
+
     maven { url 'http://dvs1.progwml6.com/files/maven' }
+
     maven { url "http://blamejared.com/maven" }
+
     maven {
         name = "ChickenBones Maven"
         url = "http://chickenbones.net/maven/"
@@ -43,8 +66,8 @@ dependencies {
     deobfCompile "betterwithmods:BetterWithMods:+"
     deobfCompile "blusunrize:ImmersiveEngineering:+"
     deobfCompile "mezz.jei:jei_1.12.2:4.8.3.128"
-
-//    deobfCompile "cofh:ThermalExpansion:+:deobf"
+    deobfCompile "exnihilocreatio:exnihilocreatio:+"
+    deobfCompile "cofh:ThermalExpansion:+:deobf"
 }
 
 processResources {

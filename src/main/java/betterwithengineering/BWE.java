@@ -48,45 +48,65 @@ public class BWE {
     @Config(modid = MODID, name = MODID)
     public static class ConfigManager {
 
-        @Config.Comment("Force IE Hemp to drop BWM Hemp items")
-        public static boolean overrideIndustrialHempDrops = true;
+        public static class ImmersiveEngineering {
 
-        public static class Steel {
-            @Config.Name("Soul Urn to Steel Ratio")
-            public int ratio = 4;
+            public static class Steel {
+                @Config.Name("Enabled")
+                public boolean enabled = false;
+
+
+                @Config.Name("Soul Urn to Steel Ratio")
+                public int ratio = 4;
+            }
+
+            public static class MechPower {
+                @Config.Name("Enabled")
+                @Config.Comment("Enabled Mechanical Power Feature")
+                public boolean enabled = true;
+
+                @Config.Name("RF Scale")
+                @Config.Comment("Scale for Axle -> Kinetic Dynamo RF generation")
+                public double rfScale = 0.5;
+            }
+
+
+            @Config.Comment("Rebalance IE Steel to be Soul Forged Steel")
+            public Steel steel = new Steel();
+
+            @Config.Comment("Allow IE Windmill and Waterwheel to output to wooden axles")
+            public MechPower mechPower = new MechPower();
+
+            @Config.Comment("Force IE Hemp to drop BWM Hemp items")
+            public boolean overrideIndustrialHempDrops = true;
         }
 
-        @Config.Name("Steel Rebalancing")
-        public static Steel steel = new Steel();
-
-
-        @Config.Comment("Rebalance IE Steel to be Soul Forged Steel")
-        public static boolean steelRebalance = true;
-
-
-        public static class MechPower {
-            @Config.Name("Enabled")
-            @Config.Comment("Enabled Mechanical Power Feature")
-            public boolean enabled = true;
-
-            @Config.Name("RF Scale")
-            @Config.Comment("Scale for Axle -> Kinetic Dynamo RF generation")
-            public double rfScale = 0.5;
-        }
-
-        @Config.Comment("Allow IE Windmill and Waterwheel to output to wooden axles")
-        public static MechPower mechPower = new MechPower();
-
-        @Config.Name("thermalexpansion")
-        public static ThermalExpansion thermalExpansion = new ThermalExpansion();
+        @Config.Name("immersiveengineering")
+        public static ImmersiveEngineering immersiveEngineering = new ImmersiveEngineering();
 
         public static class ThermalExpansion {
 
             @Config.Name("Hardcore Induction Smelter")
             @Config.Comment("Change Recipes for the Induction Smelter to be harder ")
-            public boolean hardcoreInductionSmelter = true;
+            public boolean hardcoreInductionSmelter = false;
 
         }
 
+
+
+        @Config.Name("thermalexpansion")
+        public static ThermalExpansion thermalExpansion = new ThermalExpansion();
+
+
+        public static class ExNihilo {
+            @Config.Name("Support Mech Power")
+            @Config.Comment("Allow BWM axles to power Ex Nihilo machines")
+            public boolean supportMechPower = true;
+
+            @Config.Name("Speed of Rotation")
+            @Config.Comment("Speed of rotation when a BWM axle is used in an Ex Nihilo machine")
+            public int rotationSpeed = 10;
+        }
+        @Config.Name("exnihilocreatio")
+        public static ExNihilo exNihilo = new ExNihilo();
     }
 }

@@ -1,7 +1,9 @@
 package betterwithengineering;
 
 
+import betterwithmods.common.items.ItemMaterial;
 import betterwithmods.module.Feature;
+import cofh.thermalexpansion.util.managers.machine.SmelterManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -9,6 +11,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class ThermalExpansion extends Feature {
     public static final String MODID = "thermalexpansion";
@@ -35,24 +42,24 @@ public class ThermalExpansion extends Feature {
     @Override
     public void postInit(FMLPostInitializationEvent event) {
 
-//        if (BWE.ConfigManager.thermalExpansion.hardcoreInductionSmelter) {
-//            ItemStack HELL_FIRE_INGOT = ItemMaterial.getMaterial(ItemMaterial.EnumMaterial.CONCENTRATED_HELLFIRE);
-//            ItemStack DIAMOND_INGOT = ItemMaterial.getMaterial(ItemMaterial.EnumMaterial.DIAMOND_INGOT);
-//            Map<List<SmelterManager.ComparableItemStackSmelter>, SmelterManager.SmelterRecipe> recipes = ReflectionHelper.getPrivateValue(SmelterManager.class, null, "recipeMap");
-//
-//            Iterator<SmelterManager.SmelterRecipe> iterator = recipes.values().iterator();
-//            while (iterator.hasNext()) {
-//                SmelterManager.SmelterRecipe recipe = iterator.next();
-//                if (recipe.getPrimaryOutput().isItemEqual(DIAMOND_INGOT)) {
-//                    iterator.remove();
-//                } else if (recipe.getSecondaryInput().isItemEqual(SAND)) {
-//                    ReflectionHelper.setPrivateValue(SmelterManager.SmelterRecipe.class, recipe, HELL_FIRE_INGOT, "secondaryInput");
-//                    ReflectionHelper.setPrivateValue(SmelterManager.SmelterRecipe.class, recipe, HELL_FIRE_INGOT, "secondaryInput");
-//                } else if (recipe.getSecondaryInput().isItemEqual(SOUL_SAND)) {
-//                    ReflectionHelper.setPrivateValue(SmelterManager.SmelterRecipe.class, recipe, HELL_FIRE_INGOT, "secondaryInput");
-//                }
-//            }
-//        }
+        if (BWE.ConfigManager.thermalExpansion.hardcoreInductionSmelter) {
+            ItemStack HELL_FIRE_INGOT = ItemMaterial.getMaterial(ItemMaterial.EnumMaterial.CONCENTRATED_HELLFIRE);
+            ItemStack DIAMOND_INGOT = ItemMaterial.getMaterial(ItemMaterial.EnumMaterial.DIAMOND_INGOT);
+            Map<List<SmelterManager.ComparableItemStackSmelter>, SmelterManager.SmelterRecipe> recipes = ReflectionHelper.getPrivateValue(SmelterManager.class, null, "recipeMap");
+
+            Iterator<SmelterManager.SmelterRecipe> iterator = recipes.values().iterator();
+            while (iterator.hasNext()) {
+                SmelterManager.SmelterRecipe recipe = iterator.next();
+                if (recipe.getPrimaryOutput().isItemEqual(DIAMOND_INGOT)) {
+                    iterator.remove();
+                } else if (recipe.getSecondaryInput().isItemEqual(SAND)) {
+                    ReflectionHelper.setPrivateValue(SmelterManager.SmelterRecipe.class, recipe, HELL_FIRE_INGOT, "secondaryInput");
+                    ReflectionHelper.setPrivateValue(SmelterManager.SmelterRecipe.class, recipe, HELL_FIRE_INGOT, "secondaryInput");
+                } else if (recipe.getSecondaryInput().isItemEqual(SOUL_SAND)) {
+                    ReflectionHelper.setPrivateValue(SmelterManager.SmelterRecipe.class, recipe, HELL_FIRE_INGOT, "secondaryInput");
+                }
+            }
+        }
     }
 
     public void addSmelterRecipe(int energy, ItemStack primary, ItemStack secondary, ItemStack output) {
